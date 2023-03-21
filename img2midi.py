@@ -3,7 +3,6 @@ import numpy as np
 from music21 import instrument, note, stream
 import sys
 
-
 lowerBoundNote = 21
 
 def column2notes(column):
@@ -19,7 +18,7 @@ def updateNotes(newNotes, prevNotes):
     res = {}
     for newNote in newNotes:
         if newNote in prevNotes:
-            res[note] = prevNotes[newNote] + resolution
+            res[newNote] = prevNotes[newNote] + resolution
         else:
             res[newNote] = resolution
     return res

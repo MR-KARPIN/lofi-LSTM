@@ -1,4 +1,4 @@
-from music21 import converter, instrument, note, chord
+from music21 import converter, instrument, note, chord, stream
 import sys
 import numpy as np
 from imageio import imwrite
@@ -36,9 +36,8 @@ def get_notes(notes_to_parse):
     return {"start":start, "pitch":notes, "dur":durations}
 
 
-def midi2image(midi_path, max_repetitions = float("inf"), resolution = 0.25, lowerBoundNote = 21, upperBoundNote = 127, maxSongLength = 100):
+def midi2image(midi_path, max_repetitions = float("inf"), resolution = 0.25, lowerBoundNote = 21, upperBoundNote = 127, maxSongLength = 200):
     mid = converter.parse(midi_path)
-
     instruments = instrument.partitionByInstrument(mid)
 
     data = {}
@@ -81,10 +80,10 @@ def midi2image(midi_path, max_repetitions = float("inf"), resolution = 0.25, low
                 if not start > index*(maxSongLength+1) or not dur+start < index*maxSongLength:
                     for j in range(start,start+dur):
                         if j - index*maxSongLength >= 0 and j - index*maxSongLength < maxSongLength:
-                            matrix[pitch-lowerBoundNote,j - index*maxSongLength] = 255
+                            matrix[pitch-lowerBoundNote,j - index*maxSongLength + 1] = 255
 
             if matrix.any(): # If matrix contains no notes (only zeros) don't save it
-                imwrite(midi_path.split("/")[-1].replace(".mid",f"_{instrument_name}_{index}.png"),matrix.astype(np.uint8))
+                imwrite("dataset\\images\\" + (midi_path.split("\\")[-1].replace(".mid",f"_{instrument_name}_{index}.png")), matrix.astype(np.uint8))
                 index += 1
             else:
                 break
