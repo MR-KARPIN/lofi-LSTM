@@ -1,0 +1,2 @@
+INFO - train_transformer.py - 2023-03-21 13:04:40,485 - Using device: cpu
+INFO - train_transformer.py - 2023-03-21 13:04:40,490 - Run name: run_test

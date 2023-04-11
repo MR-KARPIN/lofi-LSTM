@@ -1,0 +1,31 @@
+!!python/object:argparse.Namespace
+config: transformer_cat.yml
+doc: run_test
+log: transformer_logs\run_test
+model: !!python/object:argparse.Namespace
+  attn_type: local_1d
+  block_length: 256
+  channels: 3
+  distr: cat
+  dropout: 0.3
+  filter_size: 2048
+  hidden_size: 512
+  image_size: 32
+  initializer_gain: 0.2
+  nlayers: 12
+  num_heads: 4
+  total_key_depth: 0
+  total_value_depth: 0
+optim: !!python/object:argparse.Namespace
+  lr: 0.1
+  warmup: 4000
+sample: true
+seed: 1234
+train: !!python/object:argparse.Namespace
+  batch_size: 4
+  clip_grad_norm: 0
+  epochs: 100
+  log_iter: 1
+  sample_iter: 1000
+  sample_size: 4
+verbose: info
