@@ -1,3 +1,5 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
 import argparse
 import torch
 import sys
@@ -18,12 +20,12 @@ from torchvision import datasets, transforms
 from torchviz import make_dot
 from tqdm import tqdm
 import torch.nn as nn
+from image_dataset import CustomImageDatasetFromCsv
 
 matplotlib.use('Agg')
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 sns.set()
+
 
 def dict2namespace(config):
     namespace = argparse.Namespace()
@@ -34,6 +36,7 @@ def dict2namespace(config):
             new_value = value
         setattr(namespace, key, new_value)
     return namespace
+
 
 def parse_args_and_config():
     """
@@ -89,6 +92,7 @@ def parse_args_and_config():
 
     return args, new_config
 
+
 def get_lr(step, config):
     warmup_steps = config.optim.warmup
     lr_base = config.optim.lr * 0.002 # for Adam correction
@@ -113,7 +117,7 @@ def main():
             transforms.Resize(config.model.image_size),
             transforms.ToTensor()
         ])
-    dataset = datasets.CIFAR10('datasets/transformer', transform=transform, download=True)
+    dataset = CustomImageDatasetFromCsv()
     loader = DataLoader(dataset, batch_size=config.train.batch_size, shuffle=True, num_workers=4)
     input_dim = config.model.image_size ** 2 * config.model.channels
     model = ImageTransformer(config.model).to(config.device)
@@ -241,4 +245,5 @@ def main():
     return 0
 
 if __name__ == '__main__':
+    # python3 train_transformer.py --doc run_name --config transformer_cat.yml --sample
     sys.exit(main())
