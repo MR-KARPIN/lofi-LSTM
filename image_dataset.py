@@ -34,16 +34,16 @@ class CustomImageDatasetFromCsv(Dataset):
 
         return (image, img_path)
 
-# dataset_path = os.path.join('E:\\Documentos\\Universidad\\4º\\TFG\\lofi-transoformer', 'dataset')
-#
+# dataset_path = os.path.join('.', 'dataset')
+
 # image_path = os.path.join(dataset_path, 'images')
-#
+
 # df = pd.read_csv(os.path.join(dataset_path, "train.csv"))
 # train_df, val_df = train_test_split(df)
-#
+
 # train_data = CustomImageDatasetFromCsv(train_df, image_path, transform=None)
 # val_data = CustomImageDatasetFromCsv(val_df, image_path, transform=None)
-#
+
 # batch_size = 3
 # train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
 # val_dataloader = DataLoader(val_data, batch_size=batch_size, shuffle=True)
@@ -54,7 +54,7 @@ class CustomImageDatasetFromCsv(Dataset):
 #         img = Image.open(item)
 #         print(img)
 #         plt.imshow(img, cmap='magma')
-#
+
 #     print("\n-------------------------------------------------------\n")
 
 # sample_images, x = next(iter(train_dataloader))

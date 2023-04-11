@@ -21,6 +21,7 @@ from torchviz import make_dot
 from tqdm import tqdm
 import torch.nn as nn
 from image_dataset import CustomImageDatasetFromCsv
+import pandas as pd
 
 matplotlib.use('Agg')
 
@@ -117,7 +118,8 @@ def main():
             transforms.Resize(config.model.image_size),
             transforms.ToTensor()
         ])
-    dataset = CustomImageDatasetFromCsv()
+    df = pd.read_csv(os.path.join("./dataset/train.csv"))
+    dataset = CustomImageDatasetFromCsv(dataframe=df, img_dir="./dataset/images")
     loader = DataLoader(dataset, batch_size=config.train.batch_size, shuffle=True, num_workers=4)
     input_dim = config.model.image_size ** 2 * config.model.channels
     model = ImageTransformer(config.model).to(config.device)
