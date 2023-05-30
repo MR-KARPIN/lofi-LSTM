@@ -11,7 +11,7 @@ from keras.utils.vis_utils import plot_model
 
 
 # Method that reads the notes from a csv.
-def read_notes_csv(fname: str, delimiter=';') -> List:
+def read_notes_csv(fname: str, delimiter=',') -> List:
     rows = list()
     with open(fname) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=delimiter, quoting=csv.QUOTE_NONNUMERIC)
@@ -191,7 +191,7 @@ if __name__ == '__main__':
     BUFFER_SIZE = 100
     NUM_NS = 4
     AUTOTUNE = tf.data.AUTOTUNE
-    WEIGHTS = os.path.join('weights', 'run_-1_weights-1102-0.2022.hdf5')
+    WEIGHTS = os.path.join('weights', 'run_10_weights-1118-1.3864.hdf5')
     MAX_SEQ_LENGTH = 32
     EMBEDDING_DIM = 3
 

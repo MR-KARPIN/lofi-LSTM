@@ -26,7 +26,7 @@ def get_notes():
     if os.path.exists(filename):
         print("notes already have been processed")
         with open(filename) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
+            csv_reader = csv.reader(csv_file, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
             for row in csv_reader:
                 notes.append(row)
     else:
@@ -55,7 +55,7 @@ def get_notes():
 def read_notes_csv(fname: str) -> List:
     rows = list()
     with open(fname) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
+        csv_reader = csv.reader(csv_file, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
         for row in csv_reader:
             rows.append(row)
     return rows
