@@ -26,7 +26,7 @@ def get_notes():
     if os.path.exists(filename):
         print("notes already have been processed")
         with open(filename) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
+            csv_reader = csv.reader(csv_file, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
             for row in csv_reader:
                 notes.append(row)
     else:
@@ -55,7 +55,7 @@ def get_notes():
 def read_notes_csv(fname: str) -> List:
     rows = list()
     with open(fname) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
+        csv_reader = csv.reader(csv_file, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
         for row in csv_reader:
             rows.append(row)
     return rows
@@ -132,6 +132,9 @@ def generate_training_data(sequences, window_size, num_ns, vocab_size, seed):
 
 
 if __name__ == '__main__':
+
+    get_notes()
+
     notas = read_notes_csv(NOTAS)
     print(len(notas))
     print(notas[:5])
@@ -167,7 +170,7 @@ if __name__ == '__main__':
                      metrics=['accuracy'])
 
     word2vec.fit(dataset, epochs=5 ) #callbacks=[tensorboard_callback])
-    plot_model(word2vec, to_file='encoder_model_plot.png', show_shapes=True, show_layer_names=True)
+    # plot_model(word2vec, to_file='encoder_model_plot.png', show_shapes=True, show_layer_names=True)
 
     # Save data
     weights = word2vec.get_layer('w2v_embedding').get_weights()[0]

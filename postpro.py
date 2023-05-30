@@ -57,7 +57,7 @@ def sintetize(midi_fp, wav_fp, n_notes, offset, duration=100):
     VINYL_PLUGIN = "C:\\Program Files\\Common Files\\VST3\\iZotope\\Vinyl.vst3"  # extensions: .dll, .vst3, .vst, .component
     BPM = 88
 
-    WEIGHTS = os.path.join('weights', 'run_-1_weights-1102-0.2022.hdf5')
+    WEIGHTS = os.path.join('weights', 'run_10_weights-1119-1.5504.hdf5')
 
     engine = daw.RenderEngine(SAMPLE_RATE, BUFFER_SIZE)
     engine.set_bpm(BPM)

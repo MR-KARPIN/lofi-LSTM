@@ -11,7 +11,7 @@ from keras.utils.vis_utils import plot_model
 
 
 # Method that reads the notes from a csv.
-def read_notes_csv(fname: str, delimiter=',') -> List:
+def read_notes_csv(fname: str, delimiter=';') -> List:
     rows = list()
     with open(fname) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=delimiter, quoting=csv.QUOTE_NONNUMERIC)
@@ -84,7 +84,7 @@ def create_model(vocab_size, embedding_dim, embeddings_matrix, max_seq_length):
         ]
     )
     model.compile(optimizer=Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
-    plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
+    # plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
     return model
 
 
