@@ -1,2 +1,0 @@
-# lofi-transoformer
-TFG 

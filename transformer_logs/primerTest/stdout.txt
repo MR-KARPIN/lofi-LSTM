@@ -1,2 +1,0 @@
-INFO - train_transformer.py - 2023-04-11 16:28:14,254 - Using device: cpu
-INFO - train_transformer.py - 2023-04-11 16:28:14,256 - Run name: primerTest
